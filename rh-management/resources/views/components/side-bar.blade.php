@@ -11,7 +11,7 @@
 
     <hr>
 
-    <a href="#" class=""><i class="fas fa-cog me-3"></i>User profile</a>
+    <a href="{{route('user.profile')}}" class=""><i class="fas fa-cog me-3"></i>User profile</a>
 
     <hr>
 
