@@ -6,7 +6,7 @@
 
         <hr>
 
-        <form action="{{ route('UpdateDepartment') }}" method="post">
+        <form action="#" method="post">
 
             @csrf
 
@@ -23,7 +23,7 @@
             @enderror
 
             <div class="mb-3 d-flex align-items-center">
-                <a href="{{ route('departments') }}" class="btn btn-outline-danger me-3">Cancel</a>
+                <a href="#" class="btn btn-outline-danger me-3">Cancel</a>
                 <button type="submit" class="btn btn-primary">Edit Department</button>
             </div>
 

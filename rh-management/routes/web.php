@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RhUserController;
 use App\Models\User;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Mail;
@@ -60,4 +61,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/edit-department', [DepartmentController::class, 'UpdateDepartment'])->name('UpdateDepartment');
 
     Route::delete('/delete-department', [DepartmentController::class, 'DeleteDepartment'])->name('DeleteDepartment');
+
+    //Colaborators
+
+    Route::get('/rh-users', [RhUserController::class, 'index'])->name('colaborators.rh-users');
+
+    Route::get('/add-rh-users', [RhUserController::class, 'newColaborator'])->name('colaborators.new-rh-users');
+
+    Route::post('/create-rh-users', [RhUserController::class, 'addColaborator'])->name('colaborators.create-rh-users');
 });
