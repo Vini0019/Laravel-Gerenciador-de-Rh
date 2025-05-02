@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use Illuminate\Mail\Message;
@@ -7,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/email', function () {
-    
+
 //     Mail::raw('Mesangem de teste de RH management', function(Message $message){
 //         $message->to('teste@gmail.com')
 //         ->subject('Bem-vindo ao RH MANGNT')
@@ -35,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
 
     Route::redirect('/', 'home');
     Route::view('/home', 'home')->name('home');
@@ -44,4 +45,19 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/user/profile/update-password', [ProfileController::class, 'updatePassword'])->name('user.profile.updatePassword');
 
+    Route::post('/user/profile/update-user-data', [ProfileController::class, 'updateUserData'])->name('user.profile.update-user-data');
+
+
+    //Departamentos
+    Route::get('/departments', [DepartmentController::class, 'index'])->name('departments');
+
+    Route::get('/add-department', [DepartmentController::class, 'FormAddDepartment'])->name('departments.new-department');
+
+    Route::post('/create-department', [DepartmentController::class, 'addDepartment'])->name('departments.create-departments');
+
+    Route::get('/edit-department/{id}', [DepartmentController::class, 'FormEditDepartment'])->name('FormEditDepartment');
+
+    Route::put('/edit-department', [DepartmentController::class, 'UpdateDepartment'])->name('UpdateDepartment');
+
+    Route::delete('/delete-department', [DepartmentController::class, 'DeleteDepartment'])->name('DeleteDepartment');
 });

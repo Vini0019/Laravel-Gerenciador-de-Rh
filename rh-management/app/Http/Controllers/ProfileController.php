@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\updatePasswordRequest;
+use App\Http\Requests\updateUserDataRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -29,6 +30,20 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'A senha atualizou com sucesso');
+
+    }
+
+    public function updateUserData(updateUserDataRequest $request)
+    {
+        $user = auth()->user();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $user->save();
+
+        return redirect()->back()->with('success_change_data', 'O perfil foi atualizado com sucesso');
+
 
     }
 

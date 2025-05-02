@@ -5,7 +5,7 @@
 
     <a href="{{route('home')}}" class=""><i class="fas fa-user me-3"></i>Colaborators</a>
     <a href="{{route('home')}}" class=""><i class="fas fa-user-gear me-3"></i>RH Colaborators</a>
-    <a href="{{route('home')}}" class=""><i class="fas fa-industry me-3"></i>Departaments</a>
+    <a href="{{route('departments')}}" class=""><i class="fas fa-industry me-3"></i>Departaments</a>
 
     @endcan
 
