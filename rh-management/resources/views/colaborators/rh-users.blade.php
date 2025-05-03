@@ -27,11 +27,15 @@
             <a href="{{ route('colaborators.new-rh-users') }}" class="btn btn-primary">Create a new colaborator</a>
         </div>
 
-        <table class="table w-50" id="table">
+        <table class="table" id="table">
             <thead class="table-dark">
                 <th>Name</th>
                 <th>Email</th>
+                <th>Role</th>
                 <th>Permissions</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Admission Date</th>
                 <th></th>
             </thead>
             <tbody>
@@ -40,7 +44,8 @@
                 <tr>
                     <td>{{ $colaborator->name }}</td>
                     <td>{{ $colaborator->email }}</td>
-                    
+                    <td>{{ $colaborator->role }}</td>
+
                     @php
                     $permissions = json_decode($colaborator->permissions);
                     @endphp
@@ -49,11 +54,15 @@
                         {{ implode(',', $permissions) }}
                     </td>
 
+                    <td>{{ $colaborator->detail->address }}</td>
+                    <td>{{ $colaborator->detail->city }}</td>
+                    <td>{{ $colaborator->detail->admission_date }}</td>
+
                     <td>
                         <div class="d-flex gap-3 justify-content-end">
-                            <a href="{{ route('FormEditDepartment', ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a>
+                            <a href="{{ route('colaborators.edit-rh-users', ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a>
 
-                            <form id="delete-department-form-{{ $colaborator->id }}" action="{{ route('DeleteDepartment') }}" method="post" class="delete-department-form">
+                            <form id="delete-user-form-{{ $colaborator->id }}" action="{{ route('colaborators.delete-rh-users') }}" method="post" class="delete-user-form">
                                 @csrf
                                 @method('delete')
 
@@ -86,7 +95,7 @@
         document.querySelectorAll('.delete-button').forEach(button => {
             button.addEventListener('click', function() {
                 const id = this.getAttribute('data-id');
-                const form = document.getElementById(`delete-department-form-${id}`);
+                const form = document.getElementById(`delete-user-form-${id}`);
 
                 Swal.fire({
                     title: 'Tem certeza?',
