@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ColaboratorsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RhUserController;
@@ -76,4 +77,14 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/delete-rh-user', [RhUserController::class, 'deleteColaborator'])->name('colaborators.delete-rh-users');
 
+
+    //colaborators
+
+    Route::get('/colaborators', [ColaboratorsController::class, 'index'])->name('colaborators.admin-all-colaborators');
+
+    Route::get('/detail-colaborator/{id}', [ColaboratorsController::class, 'detailColaborator'])->name('colaborator.detail-colaborator');
+
+    Route::delete('/delete-colaborator', [ColaboratorsController::class, 'destroyColaborator'])->name('colaborator.destroy-colaborator');
+
+    Route::put('/restore-colaborator', [ColaboratorsController::class, "restoreColaborator"])->name('colaborator.restore-colaborator');
 });
